@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Hit Game 🎯</title>
+  <title>Target Game</title>
   <style>
     body{
       background:black;
@@ -9,25 +9,25 @@
       text-align:center;
       font-family:Arial;
       overflow:hidden;
+      margin:0;
     }
     #target{
       width:80px;
       height:80px;
       background:red;
-      position:absolute;
       border-radius:50%;
-      cursor:pointer;
+      position:absolute;
       display:none;
     }
   </style>
 </head>
 <body>
 
-<h1>🎯 Target Game</h1>
-<p>Time: <span id="time">10</span></p>
+<h1>🎯 O‘yin</h1>
+<p>Vaqt: <span id="time">10</span></p>
 <p>Score: <span id="score">0</span></p>
 
-<div id="target" onclick="hit()"></div>
+<div id="target"></div>
 
 <script>
 let score = 0;
@@ -35,37 +35,39 @@ let timeLeft = 10;
 let gameOver = false;
 
 const target = document.getElementById("target");
-const scoreText = document.getElementById("score");
-const timeText = document.getElementById("time");
+const scoreEl = document.getElementById("score");
+const timeEl = document.getElementById("time");
 
 function moveTarget() {
   if (gameOver) return;
-  let x = Math.random() * (window.innerWidth - 80);
-  let y = Math.random() * (window.innerHeight - 120) + 80;
+  const x = Math.random() * (window.innerWidth - 80);
+  const y = 100 + Math.random() * (window.innerHeight - 180);
   target.style.left = x + "px";
   target.style.top = y + "px";
 }
 
-function hit() {
+target.onclick = function () {
   if (gameOver) return;
   score++;
-  scoreText.innerText = score;
+  scoreEl.textContent = score;
   moveTarget();
-}
+};
 
 target.style.display = "block";
 moveTarget();
 
-let moveInterval = setInterval(moveTarget, 1000);
+const moveInt = setInterval(moveTarget, 1000);
 
-let timer = setInterval(function () {
+const timerInt = setInterval(function () {
+  if (gameOver) return;
+  
   timeLeft--;
-  timeText.innerText = timeLeft;
+  timeEl.textContent = timeLeft;
 
   if (timeLeft <= 0) {
     gameOver = true;
-    clearInterval(timer);
-    clearInterval(moveInterval);
+    clearInterval(moveInt);
+    clearInterval(timerInt);
     target.style.display = "none";
     alert("O‘yin tugadi! Score: " + score);
   }
@@ -74,3 +76,4 @@ let timer = setInterval(function () {
 
 </body>
 </html>
+  
