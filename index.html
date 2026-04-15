@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+0 <!DOCTYPE html>
 <html>
 <head>
   <title>Hit Game 🎯</title>
@@ -48,4 +48,21 @@ setInterval(moveTarget, 1000);
 </script>
 
 </body>
-</html>
+</html> 
+<script>
+let score = 0;
+let gameOver = false;
+
+function clickBtn() {
+  if (gameOver) return; // agar tugagan bo‘lsa qayta ishlamasin
+
+  score++;
+
+  if (score >= 10) {
+    gameOver = true;
+    alert("Game tugadi! Score: " + score);
+  }
+}
+</script>
+
+<button onclick="clickBtn()">BOS TEZ! 🔥</button>
