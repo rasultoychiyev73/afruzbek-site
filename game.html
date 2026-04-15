@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>O‘yin 🎮</title>
+  <style>
+    body{
+      background:black;
+      color:white;
+      text-align:center;
+      font-family:Arial;
+      overflow:hidden;
+      margin:0;
+    }
+    #target{
+      width:80px;
+      height:80px;
+      background:red;
+      border-radius:50%;
+      position:absolute;
+      display:none;
+    }
+    button{
+      padding:10px 20px;
+      margin-top:10px;
+    }
+  </style>
+</head>
+<body>
+
+<a href="index.html">
+  <button>⬅️ Orqaga</button>
+</a>
+
+<h1>🎯 Target Game</h1>
+<p>Vaqt: <span id="time">10</span></p>
+<p>Score: <span id="score">0</span></p>
+
+<div id="target"></div>
+
+<script>
+let score = 0;
+let timeLeft = 10;
+let gameOver = false;
+
+const target = document.getElementById("target");
+const scoreEl = document.getElementById("score");
+const timeEl = document.getElementById("time");
+
+function moveTarget() {
+  if (gameOver) return;
+  let x = Math.random() * (window.innerWidth - 80);
+  let y = 100 + Math.random() * (window.innerHeight - 180);
+  target.style.left = x + "px";
+  target.style.top = y + "px";
+}
+
+target.onclick = function () {
+  if (gameOver) return;
+  score++;
+  scoreEl.innerText = score;
+  moveTarget();
+};
+
+target.style.display = "block";
+moveTarget();
+
+let moveInt = setInterval(moveTarget, 1000);
+
+let timerInt = setInterval(function () {
+  if (gameOver) return;
+
+  timeLeft--;
+  timeEl.innerText = timeLeft;
+
+  if (timeLeft <= 0) {
+    gameOver = true;
+    clearInterval(moveInt);
+    clearInterval(timerInt);
+    target.style.display = "none";
+    alert("O‘yin tugadi! Score: " + score);
+  }
+}, 1000);
+</script>
+
+</body>
+</html>
