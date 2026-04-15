@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body style="background:black;color:white;text-align:center;">
+
+<a href="index.html"><button>⬅️ Orqaga</button></a>
+
+<h1>🎲 Son topish o‘yini</h1>
+
+<p>1 dan 10 gacha son o‘yladim</p>
+
+<input type="number" id="guess">
+<button onclick="check()">Tekshir</button>
+
+<p id="result"></p>
+
+<script>
+let random = Math.floor(Math.random()*10)+1;
+
+function check(){
+  let user = Number(document.getElementById("guess").value);
+  let result = document.getElementById("result");
+
+  if(user === random){
+    result.innerText = "🎉 To‘g‘ri!";
+  } else {
+    result.innerText = "❌ Xato!";
+  }
+}
+</script>
+
+</body>
+</html>
