@@ -1,89 +1,126 @@
-<a href="index.html">
-  <button>⬅️ Orqaga</button>
-</a>
+
 <!DOCTYPE html>
-<html>
+<html lang="uz">
 <head>
-  <title>O‘yin 🎮</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O‘yin</title>
   <style>
-    body{
-      background:black;
-      color:white;
-      text-align:center;
-      font-family:Arial;
-      overflow:hidden;
-      margin:0;
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
     }
-    #target{
-      width:80px;
-      height:80px;
-      background:red;
-      border-radius:50%;
-      position:absolute;
-      display:none;
+
+    body {
+      margin: 0;
+      background: #000;
+      color: white;
+      text-align: center;
+      overflow: hidden;
     }
-    button{
-      padding:10px 20px;
-      margin-top:10px;
+
+    .top {
+      padding: 20px 12px 10px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 12px;
+      text-decoration: none;
+    }
+
+    .back button {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 12px;
+      background: #444;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    h1 {
+      margin: 8px 0;
+      font-size: 30px;
+    }
+
+    p {
+      margin: 8px 0;
+      font-size: 20px;
+    }
+
+    #target {
+      width: 80px;
+      height: 80px;
+      background: red;
+      border-radius: 50%;
+      position: absolute;
+      display: none;
+      box-shadow: 0 0 18px red;
     }
   </style>
 </head>
 <body>
 
-<a href="index.html">
-  <button>⬅️ Orqaga</button>
-</a>
+  <div class="top">
+    <a href="index.html" class="back">
+      <button>⬅️ Chiqish</button>
+    </a>
 
-<h1>🎯 Target Game</h1>
-<p>Vaqt: <span id="time">10</span></p>
-<p>Score: <span id="score">0</span></p>
+    <h1>🎯 O‘yin</h1>
+    <p>Vaqt: <span id="time">10</span></p>
+    <p>Score: <span id="score">0</span></p>
+  </div>
 
-<div id="target"></div>
+  <div id="target"></div>
 
-<script>
-let score = 0;
-let timeLeft = 10;
-let gameOver = false;
+  <script>
+    let score = 0;
+    let timeLeft = 10;
+    let gameOver = false;
 
-const target = document.getElementById("target");
-const scoreEl = document.getElementById("score");
-const timeEl = document.getElementById("time");
+    const target = document.getElementById("target");
+    const scoreEl = document.getElementById("score");
+    const timeEl = document.getElementById("time");
 
-function moveTarget() {
-  if (gameOver) return;
-  let x = Math.random() * (window.innerWidth - 80);
-  let y = 100 + Math.random() * (window.innerHeight - 180);
-  target.style.left = x + "px";
-  target.style.top = y + "px";
-}
+    function moveTarget() {
+      if (gameOver) return;
 
-target.onclick = function () {
-  if (gameOver) return;
-  score++;
-  scoreEl.innerText = score;
-  moveTarget();
-};
+      const x = Math.random() * (window.innerWidth - 80);
+      const y = 140 + Math.random() * (window.innerHeight - 240);
 
-target.style.display = "block";
-moveTarget();
+      target.style.left = x + "px";
+      target.style.top = y + "px";
+    }
 
-let moveInt = setInterval(moveTarget, 1000);
+    target.onclick = function () {
+      if (gameOver) return;
 
-let timerInt = setInterval(function () {
-  if (gameOver) return;
+      score++;
+      scoreEl.textContent = score;
+      moveTarget();
+    };
 
-  timeLeft--;
-  timeEl.innerText = timeLeft;
+    target.style.display = "block";
+    moveTarget();
 
-  if (timeLeft <= 0) {
-    gameOver = true;
-    clearInterval(moveInt);
-    clearInterval(timerInt);
-    target.style.display = "none";
-    alert("O‘yin tugadi! Score: " + score);
-  }
-}, 1000);
-</script>
+    const moveInterval = setInterval(moveTarget, 1000);
+
+    const timerInterval = setInterval(function () {
+      if (gameOver) return;
+
+      timeLeft--;
+      timeEl.textContent = timeLeft;
+
+      if (timeLeft <= 0) {
+        gameOver = true;
+        clearInterval(moveInterval);
+        clearInterval(timerInterval);
+        target.style.display = "none";
+        alert("O‘yin tugadi! Score: " + score);
+      }
+    }, 1000);
+  </script>
 
 </body>
 </html>
