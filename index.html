@@ -1,79 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Target Game</title>
-  <style>
-    body{
-      background:black;
-      color:white;
-      text-align:center;
-      font-family:Arial;
-      overflow:hidden;
-      margin:0;
-    }
-    #target{
-      width:80px;
-      height:80px;
-      background:red;
-      border-radius:50%;
-      position:absolute;
-      display:none;
-    }
-  </style>
+  <title>Bosh sahifa</title>
 </head>
-<body>
+<body style="background:black;color:white;text-align:center;">
 
-<h1>🎯 O‘yin</h1>
-<p>Vaqt: <span id="time">10</span></p>
-<p>Score: <span id="score">0</span></p>
+<h1>🔥 AFRUZBEK HUB</h1>
 
-<div id="target"></div>
-
-<script>
-let score = 0;
-let timeLeft = 10;
-let gameOver = false;
-
-const target = document.getElementById("target");
-const scoreEl = document.getElementById("score");
-const timeEl = document.getElementById("time");
-
-function moveTarget() {
-  if (gameOver) return;
-  const x = Math.random() * (window.innerWidth - 80);
-  const y = 100 + Math.random() * (window.innerHeight - 180);
-  target.style.left = x + "px";
-  target.style.top = y + "px";
-}
-
-target.onclick = function () {
-  if (gameOver) return;
-  score++;
-  scoreEl.textContent = score;
-  moveTarget();
-};
-
-target.style.display = "block";
-moveTarget();
-
-const moveInt = setInterval(moveTarget, 1000);
-
-const timerInt = setInterval(function () {
-  if (gameOver) return;
-  
-  timeLeft--;
-  timeEl.textContent = timeLeft;
-
-  if (timeLeft <= 0) {
-    gameOver = true;
-    clearInterval(moveInt);
-    clearInterval(timerInt);
-    target.style.display = "none";
-    alert("O‘yin tugadi! Score: " + score);
-  }
-}, 1000);
-</script>
+<a href="game.html">
+  <button style="padding:15px 25px;">🎮 O‘yinga kirish</button>
+</a>
 
 </body>
 </html>
-  
