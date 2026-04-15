@@ -1,14 +1,119 @@
 <!DOCTYPE html>
-<html>
+<html lang="uz">
 <head>
-  <title>Afruzbek site</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Afruzbek Hub</title>
+  <style>
+    body{
+      margin:0;
+      font-family:Arial,sans-serif;
+      background:linear-gradient(180deg,#0f1020,#1b1140);
+      color:white;
+      text-align:center;
+    }
+    .wrap{
+      max-width:900px;
+      margin:auto;
+      padding:20px;
+    }
+    .box{
+      background:rgba(255,255,255,0.08);
+      border-radius:16px;
+      padding:20px;
+      margin:18px 0;
+      box-shadow:0 0 20px rgba(0,0,0,0.25);
+    }
+    input{
+      width:90%;
+      max-width:320px;
+      padding:12px;
+      margin:8px 0;
+      border:none;
+      border-radius:10px;
+      font-size:16px;
+    }
+    button{
+      padding:12px 22px;
+      margin-top:10px;
+      border:none;
+      border-radius:12px;
+      background:#7c4dff;
+      color:white;
+      font-size:16px;
+      cursor:pointer;
+    }
+    .cards{
+      display:flex;
+      flex-wrap:wrap;
+      gap:16px;
+      justify-content:center;
+    }
+    .card{
+      width:240px;
+      background:rgba(255,255,255,0.08);
+      border-radius:16px;
+      padding:18px;
+    }
+    h1{font-size:38px;}
+    h2{margin-top:0;}
+    p{color:#ddd;}
+    .small{font-size:14px;color:#bbb;}
+  </style>
 </head>
-<body style="background:black; color:white; text-align:center;">
+<body>
+  <div class="wrap">
+    <h1>Afruzbek Hub 🔥</h1>
+    <p>Register, premium va foydali bo‘limlar</p>
 
-<h1>Salom 😎🔥</h1>
-<p>Bu mening yangi saytim</p>
+    <div class="box">
+      <h2>Register</h2>
+      <input type="text" placeholder="Username"><br>
+      <input type="email" placeholder="Email"><br>
+      <input type="password" placeholder="Parol"><br>
+      <button onclick="alert('Demo register oynasi 😎')">Ro‘yxatdan o‘tish</button>
+    </div>
 
-<button onclick="alert('Zo‘rku 😎')">Bos meni</button>
+    <div class="box">
+      <h2>Login</h2>
+      <input type="text" placeholder="Username yoki Email"><br>
+      <input type="password" placeholder="Parol"><br>
+      <button onclick="alert('Demo login oynasi 😎')">Kirish</button>
+    </div>
 
+    <div class="box">
+      <h2>Premium / Plus</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Basic</h3>
+          <p>Oddiy foydalanuvchi</p>
+          <h2>$5</h2>
+          <button onclick="alert('Basic tanlandi')">Buy</button>
+        </div>
+
+        <div class="card">
+          <h3>Premium</h3>
+          <p>Ko‘proq imkoniyat</p>
+          <h2>$10</h2>
+          <button onclick="alert('Premium tanlandi')">Buy</button>
+        </div>
+
+        <div class="card">
+          <h3>Plus</h3>
+          <p>Eng yaxshi tarif</p>
+          <h2>$20</h2>
+          <button onclick="alert('Plus tanlandi')">Buy</button>
+        </div>
+      </div>
+      <p class="small">Bu hozir demo. Haqiqiy to‘lov hali ulanmagan.</p>
+    </div>
+
+    <div class="box">
+      <h2>Roblox bo‘limi</h2>
+      <p>Bu yerga cheat emas, legit kontent qo‘yamiz:</p>
+      <p>Game guide • tips • update • skin idea • build idea</p>
+      <button onclick="alert('Legit kontent bo‘limi')">Open</button>
+    </div>
+  </div>
 </body>
 </html>
