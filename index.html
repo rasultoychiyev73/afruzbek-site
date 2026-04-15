@@ -1,4 +1,4 @@
-0 <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Hit Game 🎯</title>
@@ -17,52 +17,60 @@
       position:absolute;
       border-radius:50%;
       cursor:pointer;
+      display:none;
     }
   </style>
 </head>
 <body>
 
 <h1>🎯 Target Game</h1>
+<p>Time: <span id="time">10</span></p>
 <p>Score: <span id="score">0</span></p>
 
 <div id="target" onclick="hit()"></div>
 
 <script>
 let score = 0;
-let target = document.getElementById("target");
+let timeLeft = 10;
+let gameOver = false;
 
-function moveTarget(){
+const target = document.getElementById("target");
+const scoreText = document.getElementById("score");
+const timeText = document.getElementById("time");
+
+function moveTarget() {
+  if (gameOver) return;
   let x = Math.random() * (window.innerWidth - 80);
-  let y = Math.random() * (window.innerHeight - 80);
+  let y = Math.random() * (window.innerHeight - 120) + 80;
   target.style.left = x + "px";
   target.style.top = y + "px";
 }
 
-function hit(){
+function hit() {
+  if (gameOver) return;
   score++;
-  document.getElementById("score").innerText = score;
+  scoreText.innerText = score;
   moveTarget();
 }
 
-setInterval(moveTarget, 1000);
+target.style.display = "block";
+moveTarget();
+
+let moveInterval = setInterval(moveTarget, 1000);
+
+let timer = setInterval(function () {
+  timeLeft--;
+  timeText.innerText = timeLeft;
+
+  if (timeLeft <= 0) {
+    gameOver = true;
+    clearInterval(timer);
+    clearInterval(moveInterval);
+    target.style.display = "none";
+    alert("O‘yin tugadi! Score: " + score);
+  }
+}, 1000);
 </script>
 
 </body>
-</html> 
-<script>
-let score = 0;
-let gameOver = false;
-
-function clickBtn() {
-  if (gameOver) return; // agar tugagan bo‘lsa qayta ishlamasin
-
-  score++;
-
-  if (score >= 10) {
-    gameOver = true;
-    alert("Game tugadi! Score: " + score);
-  }
-}
-</script>
-
-<button onclick="clickBtn()">BOS TEZ! 🔥</button>
+</html>
